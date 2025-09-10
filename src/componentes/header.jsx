@@ -7,7 +7,9 @@ import IconButton from "@mui/material/IconButton";
 import InputBase from "@mui/material/InputBase";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
-import { orange } from "@mui/material/colors"; // importamos el color naranja
+import { orange } from "@mui/material/colors";
+import MenuDrawer from "../utils/menuDrawer";
+import BungalowIcon from '@mui/icons-material/Bungalow';
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -55,16 +57,7 @@ function Header() {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" sx={{ backgroundColor: orange[500] }}> {/* AppBar naranja */}
         <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            sx={{ mr: 2 }}
-          >
-            <MenuIcon />
-          </IconButton>
-          
+          <MenuDrawer />          
           <IconButton
             size="large"
             edge="start"
@@ -72,7 +65,7 @@ function Header() {
             aria-label="inicio"
             sx={{ mr: 2 }}
           >
-            INICIO
+          <BungalowIcon />
           </IconButton>
 
           <Box sx={{ marginLeft: "auto" }}> {/* esto empuja el Search al extremo derecho */}

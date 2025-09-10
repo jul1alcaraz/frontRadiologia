@@ -8,13 +8,13 @@ function Footer() {
     return (
         <Paper
             sx={{
-                marginTop: 'calc(10% + 60px)',
+                
                 bottom: 0,
                 padding: 2,
                 textAlign: 'center',
                 alignItems: 'center',
-                backgroundColor: orange[500], // fondo naranja Material UI
-                color: 'white', // texto blanco para contraste
+                backgroundColor: orange[500], 
+                color: 'white', 
             }}
             square
             variant="outlined"
