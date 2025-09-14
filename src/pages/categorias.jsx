@@ -1,8 +1,6 @@
 import * as React from 'react';
-import { styled } from '@mui/material/styles';
-import Box from '@mui/material/Box';
+import { Box, Typography, styled } from "@mui/material";
 import ButtonBase from '@mui/material/ButtonBase';
-import Typography from '@mui/material/Typography';
 
 const images = [
   {
@@ -43,8 +41,7 @@ const images = [
 ];
 
 const ImageButton = styled(ButtonBase)(({ theme }) => ({
-  
-  height: 200,
+  height: '100%',
   [theme.breakpoints.down('sm')]: { 
   },
   '&:hover, &.Mui-focusVisible': {
@@ -105,16 +102,27 @@ const ImageMarked = styled('span')(({ theme }) => ({
 }));
 
 function CategoriasCart() {
+  // Calculamos el número de filas necesarias (siempre 3 por fila)
+  const totalRows = Math.ceil(images.length / 3);
+  const heightPerRow = `calc(${100 / totalRows}% - ${8 / totalRows}px)`;
+  
   return (
-    <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
+    <Box sx={{ 
+      display: 'flex', 
+      flexWrap: 'wrap',
+      width: '100vw',
+      height: '100vh',
+      margin: 0,
+      padding: 1,
+      gap: 1
+    }}>
       {images.map((image) => (
         <ImageButton
           focusRipple
           key={image.title}
           sx={{
-            flex: '1 0 30%', // cada tarjeta ocupa ~1/3 del ancho
-            height: 200,
-            marginBottom: 1,
+            flex: '1 0 calc(33.333% - 8px)', // Siempre 3 columnas
+            height: heightPerRow, // Altura calculada dinámicamente
           }}
         >
           <ImageSrc style={{ backgroundImage: `url(${image.url})` }} />

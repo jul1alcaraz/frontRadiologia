@@ -1,4 +1,4 @@
-import * as React from "react"; 
+import * as React from "react";
 import { styled, alpha } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -8,13 +8,12 @@ import SearchIcon from "@mui/icons-material/Search";
 import { orange } from "@mui/material/colors";
 import MenuDrawer from "../utils/menuDrawer";
 
-
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
   borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(orange[900], 0.15), // fondo naranja transparente
+  backgroundColor: alpha(orange[900], 0.15),
   "&:hover": {
-    backgroundColor: alpha(orange[50], 0.25), // más intenso al hover
+    backgroundColor: alpha(orange[50], 0.25),
   },
   marginLeft: 0,
   width: "100%",
@@ -52,27 +51,31 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 function Header() {
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" sx={{ backgroundColor: orange[500] }}> 
-        <Toolbar>
-          <MenuDrawer />          
-          
-
-          <Box sx={{ marginLeft: "auto" }}> {/* esto empuja el Search al extremo derecho */}
-            <Search>
-              <SearchIconWrapper>
-                <SearchIcon />
-              </SearchIconWrapper>
-              <StyledInputBase
-                placeholder="Buscar…"
-                inputProps={{ "aria-label": "search" }}
-              />
-            </Search>
-          </Box>
-
-        </Toolbar>
-      </AppBar>
-    </Box>
+    <AppBar 
+      sx={{
+        position: 'fixed',
+        width: '100%',
+        buttom: 0,
+        backgroundColor: orange[500],
+        color: 'white',
+        zIndex: 1000,
+      }}
+    >
+      <Toolbar>
+        <MenuDrawer />
+        <Box sx={{ marginLeft: "auto" }}>
+          <Search>
+            <SearchIconWrapper>
+              <SearchIcon />
+            </SearchIconWrapper>
+            <StyledInputBase
+              placeholder="Buscar…"
+              inputProps={{ "aria-label": "search" }}
+            />
+          </Search>
+        </Box>
+      </Toolbar>
+    </AppBar>
   );
 }
 

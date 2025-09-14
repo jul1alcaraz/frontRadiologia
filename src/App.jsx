@@ -2,7 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import Home from "./pages/aHome";
 import Header from "./componentes/header";
 import Footer from "./componentes/footer";
-import CategoriasCart from "./pages/bCategorias";
+import CategoriasCart from "./pages/categorias";
 import LibrosCarts from "./pages/cSubCategoria";
 import Contacto from "./pages/eContacto";
 
