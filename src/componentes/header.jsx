@@ -3,13 +3,11 @@ import { styled, alpha } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
 import InputBase from "@mui/material/InputBase";
-import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import { orange } from "@mui/material/colors";
 import MenuDrawer from "../utils/menuDrawer";
-import BungalowIcon from '@mui/icons-material/Bungalow';
+
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -55,18 +53,10 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 function Header() {
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" sx={{ backgroundColor: orange[500] }}> {/* AppBar naranja */}
+      <AppBar position="static" sx={{ backgroundColor: orange[500] }}> 
         <Toolbar>
           <MenuDrawer />          
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="inicio"
-            sx={{ mr: 2 }}
-          >
-          <BungalowIcon />
-          </IconButton>
+          
 
           <Box sx={{ marginLeft: "auto" }}> {/* esto empuja el Search al extremo derecho */}
             <Search>
