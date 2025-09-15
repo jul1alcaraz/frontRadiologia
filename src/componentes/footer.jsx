@@ -18,6 +18,7 @@ function Footer() {
                 backgroundColor: orange[500],
                 color: 'white',
                 zIndex: 1000,
+                marginTop: '20px',
             }}
             square
             variant="outlined"

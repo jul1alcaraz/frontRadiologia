@@ -2,8 +2,8 @@ import { Routes, Route } from "react-router-dom";
 import Home from "./pages/aHome";
 import Header from "./componentes/header";
 import Footer from "./componentes/footer";
-import CategoriasCart from "./pages/categorias";
-import LibrosCarts from "./pages/cSubCategoria";
+import CategoriasCart from "./pages/bCategorias";
+import LibrosCarts from "./pages/subCategoria";
 import Contacto from "./pages/eContacto";
 
 import "./App.css";
@@ -18,7 +18,7 @@ const App = () => {
           <Route path="/subcategoria" element={<LibrosCarts />} />
           <Route path="/contacto" element={<Contacto />} />
         </Routes>
-      <Footer />
+      <Footer/>
     </>
   );
 };
