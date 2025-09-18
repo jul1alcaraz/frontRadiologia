@@ -93,11 +93,9 @@ const ImageMarked = styled("span")(({ theme }) => ({
 }));
 
 function SubCategorias() {
-  const totalRows = Math.ceil(images.length / 3);
-  const heightPerRow = `calc(${100 / totalRows}% - ${8 / totalRows}px)`;
-
   return (
   <Box sx={{ width: "100vw", height: "100vh" }}>
+    
     <ColorButtons />
 
     <Box

@@ -39,16 +39,6 @@ const images = [
     title: "CINTURA ESCAPULAR",
     width: "40%",
   },
-  {
-    url: "/static/images/buttons/camera.jpg",
-    title: "AGUJEROS DEL CRANEO",
-    width: "40%",
-  },
-  {
-    url: "/static/images/buttons/camera.jpg",
-    title: "AGUJEROS DEL CRANEO",
-    width: "40%",
-  },
 ];
 
 const ImageButton = styled(ButtonBase)(({ theme }) => ({

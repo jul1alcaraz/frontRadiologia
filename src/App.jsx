@@ -17,6 +17,7 @@ const App = () => {
           <Route path="/categoria" element={<CategoriasCart />} />
           <Route path="/categoria/:categoriaId/subcategorias" element={<SubCategorias />} />
           <Route path="/subcategorias" element={<SubCategorias />} />
+          <Route path="/carrusel" element={<Carrusel />} />
           <Route path="/contacto" element={<Contacto />} />
         </Routes>
       <Footer/>
