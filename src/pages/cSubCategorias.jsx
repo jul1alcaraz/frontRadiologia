@@ -1,20 +1,40 @@
 import * as React from "react";
-import { styled } from "@mui/material/styles";
+import { Box, Typography, styled } from "@mui/material";
+import ButtonBase from "@mui/material/ButtonBase";
 import { Link } from "react-router-dom";
-import { Box, ButtonBase, Typography, Stack, Button } from "@mui/material";
+import ColorButtons from "../utils/botonesData";
 
-
-
-const images = [{ url: "/static/images/buttons/breakfast.jpg", title: "MANO" }];
+const images = [
+  {
+    url: "/static/images/buttons/breakfast.jpg",
+    title: "Brazo",
+    width: "40%",
+  },
+  {
+    url: "/static/images/buttons/burgers.jpg",
+    title: "Codo",
+    width: "40%",
+  },
+  {
+    url: "/static/images/buttons/camera.jpg",
+    title: "Antebrazo",
+    width: "40%",
+  },
+  {
+    url: "/static/images/buttons/breakfast.jpg",
+    title: "Muñeca",
+    width: "40%",
+  },
+  {
+    url: "/static/images/buttons/burgers.jpg",
+    title: "Mano",
+    width: "40%",
+  }
+];
 
 const ImageButton = styled(ButtonBase)(({ theme }) => ({
- 
-  height: 200,
-  flex: "1 0 30%",
-  margin: theme.spacing(1),
-  [theme.breakpoints.down("sm")]: {
-    flex: "1 0 100%", 
-  },
+  height: "100%",
+  [theme.breakpoints.down("sm")]: {},
   "&:hover, &.Mui-focusVisible": {
     zIndex: 1,
     "& .MuiImageBackdrop-root": {
@@ -72,64 +92,58 @@ const ImageMarked = styled("span")(({ theme }) => ({
   transition: theme.transitions.create("opacity"),
 }));
 
-function ColorButtons() {
-  return (
-    <Stack
-      direction="row"
-      justifyContent="flex-end" // alinearlos a la derecha
-      sx={{ width: "100%", mb: 1 }} 
-      padding={1}// ocupa todo el ancho y margen inferior
-    >
-      <Button variant="contained" color="secondary" size="xs" >
-        Subir
-      </Button>
-      <Button variant="contained" color="success" size="small">
-        Actualizar
-      </Button>
-      <Button variant="contained" color="error" size="small">
-        Borrar
-      </Button>
-    </Stack>
-  );
-}
-
 function SubCategorias() {
+  const totalRows = Math.ceil(images.length / 3);
+  const heightPerRow = `calc(${100 / totalRows}% - ${8 / totalRows}px)`;
+
   return (
+  <Box sx={{ width: "100vw", height: "100vh" }}>
+    <ColorButtons />
+
     <Box
-      sx={{ display: "flex", flexDirection: "column", alignItems: "stretch", mt: 6 }}
+      sx={{
+        display: "flex",
+        flexWrap: "wrap",
+        width: "100%",
+        height: "calc(100% - 50px)", // resto del espacio
+        marginTop: 1,
+        gap: 1,
+      }}
     >
-  
-      <ColorButtons />
-    
-      <Box sx={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}>
-        {images.map((image) => (
-          <ImageButton
-           component={Link}
-            to="/Carrusel"
-           key={image.title} focusRipple>
-            <ImageSrc style={{ backgroundImage: `url(${image.url})` }} />
-            <ImageBackdrop className="MuiImageBackdrop-root" />
-            <Image>
-              <Typography
-                component="span"
-                variant="subtitle1"
-                color="inherit"
-                sx={{
-                  position: "relative",
-                  p: 4,
-                  pt: 2,
-                  pb: (theme) => `calc(${theme.spacing(1)} + 6px)`,
-                }}
-              >
-                {image.title}
-                <ImageMarked className="MuiImageMarked-root" />
-              </Typography>
-            </Image>
-          </ImageButton>
-        ))}
-      </Box>
+      {images.map((image) => (
+        <ImageButton
+          component={Link}
+          to="/Carrusel"
+          focusRipple
+          key={image.title}
+          sx={{
+            flex: "1 0 calc(33.333% - 8px)",
+            height: `calc(100% / ${Math.ceil(images.length / 3)})`,
+          }}
+        >
+          <ImageSrc style={{ backgroundImage: `url(${image.url})` }} />
+          <ImageBackdrop className="MuiImageBackdrop-root" />
+          <Image>
+            <Typography
+              component="span"
+              variant="subtitle1"
+              color="inherit"
+              sx={(theme) => ({
+                position: "relative",
+                p: 4,
+                pt: 2,
+                pb: `calc(${theme.spacing(1)} + 6px)`,
+              })}
+            >
+              {image.title}
+              <ImageMarked className="MuiImageMarked-root" />
+            </Typography>
+          </Image>
+        </ImageButton>
+      ))}
     </Box>
-  );
+  </Box>
+);
 }
 
 export default SubCategorias;
