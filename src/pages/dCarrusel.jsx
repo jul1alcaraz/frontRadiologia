@@ -53,7 +53,7 @@ const rows = [
 ];
 
 // Componente principal que incluye tanto el carrusel como la tabla
-export default function ImageCarouselWithTable() {
+export default function Carrusel() {
   const settings = {
     dots: true,        // Muestra indicadores
     infinite: true,    // Carrusel infinito
