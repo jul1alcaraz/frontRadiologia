@@ -1,6 +1,6 @@
 :root {
   /* Colores principales de radiología */
-  --radiology-orange:rgb(255, 69, 0);
+  --radiology-orange: rgb(255, 69, 0);
   --radiology-amber: #ffb84d;
   --radiology-yellow: #ffc857;
   --radiology-dark-gray: #2d2d2d;
@@ -209,7 +209,6 @@ body {
   display: flex;
   flex-direction: column;
 }
-
 /* Cada botón de imagen */
 .subcategorias-grid-item {
   position: relative;
@@ -220,7 +219,6 @@ body {
   border-radius: 12px; /* bordes suaves */
   transition: transform 0.3s ease, z-index 0.3s ease;
 }
-
 /* Imagen de fondo */
 .categorias-grid-item .image-src {
   position: absolute;
@@ -233,7 +231,6 @@ body {
   transition: transform 0.3s ease;
   border-radius: 12px;
 }
-
 /* Overlay */
 .subcategorias-grid-item .image-backdrop {
   position: absolute;
@@ -245,7 +242,6 @@ body {
   transition: opacity 0.3s ease;
   border-radius: 12px;
 }
-
 /* Contenedor del título */
 .subcategorias-grid-item .image-content {
   position: absolute;
@@ -259,7 +255,6 @@ body {
   color: var(--radiology-contrast) !important;
   text-align: center;
 }
-
 /* Título con efecto hover */
 .subcategorias-grid-item:hover .image-backdrop {
   opacity: 0.15;
@@ -291,14 +286,15 @@ body {
   }
 }
 
-/*Carrusel*/
-
+/* ============================================
+   CONTENEDOR PRINCIPAL
+   ============================================ */
 .carrusel-container {
-   width: 100vw;
+  width: 100vw;
   height: 100vh;
   display: flex;
   flex-direction: column;
-  }
+}
 
 @media (min-width: 900px) {
   .carrusel-container {
@@ -306,13 +302,16 @@ body {
   }
 }
 
+/* ============================================
+   TÍTULO Y HEADER
+   ============================================ */
 .carrusel-title {
-  font-size: 900;
   font-weight: bold;
   text-align: center;
   color: var(--radiology-contrast);
-  margin-top: 4% ;
+  margin-top: 4%;
   margin-bottom: 1%;
+  font-size: 1.8rem;
 }
 
 @media (min-width: 900px) {
@@ -323,25 +322,18 @@ body {
 
 .title-icon {
   font-size: 2.5rem !important;
-  color: var(--radiology-amber) !important;
+  color: var(--radiology-orange) !important;
 }
-
-.carrusel-slider-container {
-  margin-bottom: 12px;
-}
-
 
 .image-card {
   border-radius: 24px !important;
   position: relative !important;
   cursor: pointer !important;
-   background-color: #0e460f;
- 
+  transition: transform 0.3s ease;
 }
 
 .image-card:hover {
   transform: translateY(-5px) !important;
- 
 }
 
 @media (min-width: 900px) {
@@ -350,13 +342,13 @@ body {
   }
 }
 
-/* Overlay de imagen */
+/* Overlay de la tarjeta */
 .image-overlay {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
-  background: linear-gradient(transparent, rgba(0,0,0,0.9));
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
   color: white;
   padding: 40px 20px 20px;
   text-align: center;
@@ -373,104 +365,83 @@ body {
   font-size: 1.2rem !important;
 }
 
-.click-text {
-  font-weight: 500 !important;
-}
-
-.info-panel {
-  padding: 32px !important;
-  background: var(--radiology-bone-white) !important;
-  border: 2px solid var(--radiology-orange) !important;
-  border-radius: 20px !important;
-  
-}
-
-.info-header {
-  display: flex;
-  align-items: center;
-  margin-bottom: 24px;
-}
-
-.info-icon {
-  color: rgb(255, 69, 0) !important;
-  font-size: 1.8rem !important;
-  margin-right: 16px !important;
-}
-
-.info-title {
-  color: var(--carrusel-dark-gray) !important;
-  font-weight: 600 !important;
-}
-
 .info-grid {
-  gap: 24px;
-}
-
-.technical-details {
-  background: white;
-  padding: 24px;
-  border-radius: 15px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-   width: 50vw;
-
- 
-}
-
-.details-title {
-  color: var(--carrusel-orange) !important;
-  margin-bottom: 16px !important;
-  font-weight: 600 !important;
-}
-
-.details-list > * {
-  margin-bottom: 12px;
-}
-
-.detail-item {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 5%;
 }
 
-.detail-label {
-  font-weight: 500 !important;
-  color: #666 !important;
+.technical-details-table {
+  position: relative;
+  background: var(--radiology-bone-white);
+  padding: 30px;
+  border: 2px solid rgba(255, 107, 53, 0.1);
+  animation: tableSlideUp 0.6s ease-out;
+  transition: all 0.3s ease;
+}
+.details-list {
+  color: rgb(21, 21, 21);
+  padding: 18px 15px;
+  text-align: center;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  background: var(--radiology-orange);
 }
 
-.detail-value {
-  color: #333 !important;
+.table-data {
+  padding: 20px 15px;
+  text-align: center;
+  color: #2d2d2d;
+  font-size: 0.9rem;
+  font-weight: 500;
+  line-height: 1.5;
+  transition: all 0.3s ease;
+  position: relative;
 }
 
-.detail-divider {
-  margin: 12px 0 !important;
+.table-data:hover {
+  color: #ff6b35;
+  font-weight: 600;
+  background: rgba(255, 107, 53, 0.05);
+  border-radius: 10px;
+  transform: scale(1.05);
 }
 
-/* ============================================
-   MODAL PANTALLA COMPLETA
-   ============================================ */
-
-.fullscreen-modal {
-  background-color: transparent !important;
-  box-shadow: none !important;
-  max-width: 95vw !important;
-  max-height: 95vh !important;
+/* Animaciones */
+@keyframes tableSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.modal-header {
-  background: linear-gradient(135deg, var(--carrusel-orange), var(--carrusel-amber)) !important;
-  color: white !important;
-  display: flex !important;
-  justify-content: space-between !important;
-  align-items: center !important;
-  padding: 16px !important;
-}
-
-.modal-title {
-  font-weight: 600 !important;
+@keyframes pulseGlow {
+  0%,
+  100% {
+    box-shadow: 0 0 5px rgba(255, 107, 53, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 15px rgba(152, 19, 156, 0.4);
+  }
 }
 
 .close-button {
+  position: absolute !important;
+  top: 16px;
+  right: 16px;
   color: white !important;
+  background: rgba(0, 0, 0, 0.4) !important;
+  z-index: 10;
+}
+.close-button:hover {
+  background: var(--radiology-orange) !important;
 }
 
 .modal-content {
@@ -484,8 +455,6 @@ body {
 }
 
 .modal-image {
-  width: auto;
-  height: auto;
   max-width: 90vw;
   max-height: 80vh;
   object-fit: contain;
@@ -496,41 +465,23 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
-  background: linear-gradient(transparent, rgba(0,0,0,0.9));
+  background: linear-gradient(transparent, var(--radiology-amber));
   color: white;
   padding: 24px;
   text-align: center;
 }
 
 .modal-overlay-title {
-  margin-bottom: 8px !important;
   font-weight: 600 !important;
+  margin-bottom: 8px !important;
 }
-
 .modal-overlay-description {
   opacity: 0.9 !important;
 }
 
 /* ============================================
-   ANIMACIONES
+   CARRUSEL DOTS Y ARROWS
    ============================================ */
-
-@keyframes radiologyFadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* ============================================
-   MEJORAS ESPECÍFICAS PARA EL CARRUSEL
-   ============================================ */
-
-/* Customización de dots del carrusel Slick */
 .carrusel-slider-container .slick-dots {
   bottom: -50px;
 }
@@ -546,25 +497,23 @@ body {
 .carrusel-slider-container .slick-dots li button {
   width: 12px;
   height: 12px;
-  padding: 0;
   border: none;
   background: none;
 }
 
-/* Arrows del carrusel */
 .carrusel-slider-container .slick-prev,
 .carrusel-slider-container .slick-next {
   z-index: 2;
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background: rgba(255, 107, 53, 0.8);
+  background: var(--radiology-orange);
   transition: all 0.3s ease;
 }
 
 .carrusel-slider-container .slick-prev:hover,
 .carrusel-slider-container .slick-next:hover {
-  background: rgba(255, 107, 53, 1);
+  background: var(--radiology-orange);
   transform: scale(1.1);
 }
 
@@ -572,65 +521,36 @@ body {
 .carrusel-slider-container .slick-next:before {
   color: white !important;
   font-size: 20px !important;
-  line-height: 1;
 }
 
 .carrusel-slider-container .slick-prev {
   left: 25px;
 }
-
 .carrusel-slider-container .slick-next {
   right: 25px;
 }
-
-/* ============================================
-   RESPONSIVE IMPROVEMENTS
-   ============================================ */
 
 @media (max-width: 600px) {
   .carrusel-container {
     padding: 0 8px;
     margin-top: 16px;
-    padding-top: 16px;
   }
-  
-  .carrusel-header {
-    margin-bottom: 16px;
-  }
-  
   .carrusel-title {
     font-size: 1.5rem;
-    gap: 8px;
   }
-  
   .title-icon {
     font-size: 2rem !important;
   }
-  
   .info-panel {
     padding: 16px !important;
     margin-top: 16px !important;
   }
-  
-  .info-header {
-    margin-bottom: 16px;
-  }
-  
   .info-icon {
     font-size: 1.5rem !important;
     margin-right: 8px !important;
   }
-  
-  .basic-info-section {
-    margin-bottom: 16px;
-  }
-  
   .technical-details {
-    padding: 16px;
-  }
-  
-  .findings-section {
-    padding: 16px;
+    min-width: 480px;
   }
 }
 

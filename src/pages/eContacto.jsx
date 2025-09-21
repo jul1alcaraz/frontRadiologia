@@ -13,7 +13,7 @@ const Contacto = () => {
       <Container maxWidth="lg">
     
         <Grid container justifyContent="center">
-          <Grid item xs={12} lg={8}>
+          <Grid item>
             <FormularioContacto />
           </Grid>
         </Grid>

@@ -1,8 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Slider from "react-slick";
-import { Box, Card, CardMedia, Dialog, DialogContent, DialogTitle, IconButton, Typography, Paper, Grid, Chip, Divider } from "@mui/material";
-import { Close as CloseIcon, ZoomIn as ZoomInIcon, Info as InfoIcon, LocalHospital as LocalHospitalIcon } from "@mui/icons-material";
-
+import {
+  Box,
+  Card,
+  CardMedia,
+  Dialog,
+  DialogContent,
+  IconButton,
+  Typography,
+  Paper,
+  Grid,
+} from "@mui/material";
+import {
+  Close as CloseIcon,
+  ZoomIn as ZoomInIcon,
+  LocalHospital as LocalHospitalIcon,
+} from "@mui/icons-material";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "../App.css";
@@ -63,18 +76,39 @@ const radiologyImages = [
 
 function CarruselRadiologia() {
   const [open, setOpen] = useState(false);
-  const [selectedImage, setSelectedImage] = useState(null);
-  const [currentSlide, setCurrentSlide] = useState(0);
+  const [selectedIndex, setSelectedIndex] = useState(null);
 
-  const handleImageClick = (image) => {
-    setSelectedImage(image);
+  const handleImageClick = (index) => {
+    setSelectedIndex(index);
     setOpen(true);
   };
 
   const handleClose = () => {
     setOpen(false);
-    setSelectedImage(null);
+    setSelectedIndex(null);
   };
+
+  // Teclado: flechas para navegar y ESC para cerrar
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (!open || selectedIndex === null) return;
+
+      if (e.key === "ArrowRight") {
+        setSelectedIndex((prev) => (prev + 1) % radiologyImages.length);
+      }
+      if (e.key === "ArrowLeft") {
+        setSelectedIndex(
+          (prev) => (prev - 1 + radiologyImages.length) % radiologyImages.length
+        );
+      }
+      if (e.key === "Escape") {
+        handleClose();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [open, selectedIndex]);
 
   const settings = {
     dots: true,
@@ -84,18 +118,17 @@ function CarruselRadiologia() {
     slidesToScroll: 1,
     autoplay: false,
     pauseOnHover: true,
-    beforeChange: (current, next) => setCurrentSlide(next),
-    customPaging: (i) => (
-      <div className={`carousel-dot ${i === currentSlide ? "active" : ""}`} />
-    ),
   };
 
-  const currentImageInfo = radiologyImages[currentSlide];
+  const currentImageInfo =
+    selectedIndex !== null
+      ? radiologyImages[selectedIndex]
+      : radiologyImages[0];
 
   return (
     <Box className="carrusel-container">
       {/* Título principal */}
-      <Box className="carrusel-title ">
+      <Box className="carrusel-title">
         <Typography variant="h3" className="carrusel-title">
           <LocalHospitalIcon className="title-icon" />
           Radiografías de Mano
@@ -105,11 +138,11 @@ function CarruselRadiologia() {
       {/* Carrusel */}
       <Box className="carrusel-slider-container">
         <Slider {...settings}>
-          {radiologyImages.map((img) => (
-            <Box key={img.id} >
+          {radiologyImages.map((img, index) => (
+            <Box key={img.id}>
               <Card
                 className="image-card"
-                onClick={() => handleImageClick(img)}
+                onClick={() => handleImageClick(index)}
               >
                 <CardMedia
                   component="img"
@@ -120,9 +153,7 @@ function CarruselRadiologia() {
 
                 {/* Overlay con información */}
                 <Box className="image-overlay">
-                  <Typography variant="h5" className="radiology-subtitle">
-                    {img.title}
-                  </Typography>
+                  <Typography variant="h5">{img.title}</Typography>
                   <Box className="click-indicator">
                     <ZoomInIcon className="zoom-icon" />
                     <Typography variant="caption" className="click-text">
@@ -136,84 +167,69 @@ function CarruselRadiologia() {
         </Slider>
       </Box>
 
-     <Paper className="info-panel">
-  <Box className="info-header">
-    <InfoIcon className="info-icon" />
-    <Typography variant="h4" className="info-title">
-      Información Técnica
-    </Typography>
-  </Box>
-
-  <Grid container spacing={3} className="info-grid">
-    
-    <Grid item xs={12}>
-      <Box className="technical-details-table">
-        <Typography variant="h6" className="details-title">
-          Detalles del Estudio
-        </Typography>
-        
-        <table className="technical-details">
-          <thead>
-            <tr className="table-header-row">
-              <th className="table-header">Anatomía</th>
-              <th className="table-header">Técnica</th>
-              <th className="table-header">Indicación</th>
-              <th className="table-header">Fecha</th>
-              <th className="table-header">Radiólogo</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr className="table-data-row">
-              <td className="table-data">{currentImageInfo.detailedInfo.anatomy}</td>
-              <td className="table-data">{currentImageInfo.detailedInfo.technique}</td>
-              <td className="table-data">{currentImageInfo.detailedInfo.indication}</td>
-              <td className="table-data">{currentImageInfo.detailedInfo.date}</td>
-              <td className="table-data">{currentImageInfo.detailedInfo.radiologist}</td>
-            </tr>
-          </tbody>
-        </table>
-      </Box>
-    </Grid>
-  </Grid>
-</Paper>
+      {/* Tabla técnica */}
+      <Paper>
+        <Grid container className="info-grid">
+          <Grid item>
+            <Box className="technical-details-table">
+              <Typography variant="h3" className="radiology-subtitle2">
+                Información Técnica
+              </Typography>
+              <table className="technical-details">
+                <thead>
+                  <tr className="table-header-row">
+                    <th className="details-list">Anatomía</th>
+                    <th className="details-list">Técnica</th>
+                    <th className="details-list">Indicación</th>
+                    <th className="details-list">Fecha</th>
+                    <th className="details-list">Radiólogo</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr className="table-data-row">
+                    <td className="table-data">
+                      {currentImageInfo.detailedInfo.anatomy}
+                    </td>
+                    <td className="table-data">
+                      {currentImageInfo.detailedInfo.technique}
+                    </td>
+                    <td className="table-data">
+                      {currentImageInfo.detailedInfo.indication}
+                    </td>
+                    <td className="table-data">
+                      {currentImageInfo.detailedInfo.date}
+                    </td>
+                    <td className="table-data">
+                      {currentImageInfo.detailedInfo.radiologist}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </Box>
+          </Grid>
+        </Grid>
+      </Paper>
 
       {/* Modal de pantalla completa */}
-      <Dialog
-        open={open}
-        onClose={handleClose}
-        maxWidth={false}
-        PaperProps={{
-          className: "fullscreen-modal",
-        }}
-      >
-        <DialogTitle className="modal-header">
-          <Typography variant="h6" className="modal-title">
-            {selectedImage?.title}
-          </Typography>
-          <IconButton onClick={handleClose} className="close-button">
-            <CloseIcon />
-          </IconButton>
-        </DialogTitle>
-
+      <Dialog open={open} onClose={handleClose} maxWidth={false}>
         <DialogContent className="modal-content">
-          {selectedImage && (
+          {selectedIndex !== null && (
             <Box className="modal-image-container">
+              {/* Botón cerrar arriba a la derecha */}
+              <IconButton onClick={handleClose} className="close-button">
+                <CloseIcon />
+              </IconButton>
+
               <img
-                src={selectedImage.url}
-                alt={selectedImage.title}
+                src={radiologyImages[selectedIndex].url}
+                alt={radiologyImages[selectedIndex].title}
                 className="modal-image"
               />
 
-              {/* Descripción en la imagen completa */}
+              {/* Descripción */}
               <Box className="modal-overlay">
                 <Typography variant="h6" className="modal-overlay-title">
-                  {selectedImage.title}
-                </Typography>
-                <Typography
-                  variant="body1"
-                  className="modal-overlay-description"
-                >
-                  {selectedImage.description}
+                  {radiologyImages[selectedIndex].title}
                 </Typography>
               </Box>
             </Box>
