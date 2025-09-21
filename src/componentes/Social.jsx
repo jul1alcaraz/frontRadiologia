@@ -6,15 +6,16 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 import SchoolIcon from "@mui/icons-material/School";
 import WorkIcon from '@mui/icons-material/Work';
 import { Tooltip, Link } from "@mui/material";
+import '../App.css';
 
 const Social = () => {
   return (
-    <div>
-      <Tooltip title="Portafolio">
+    <div  >
+      <Tooltip title="Portafolio" >
         <Link
           href="https://jul1alcaraz.netlify.app/"
           target="_blank"
-          sx={{ my: 2, marginRight: 3, color: "white" }}
+          sx={{ my: 2, marginRight: 3, color: "var(--radiology-yellow)" }}
         >
           <WorkIcon></WorkIcon>
         </Link>
@@ -24,7 +25,7 @@ const Social = () => {
         <Link
           href="https://github.com/jul1alcaraz"
           target="_blank"
-          sx={{ my: 2, marginRight: 3, color: "white" }}
+          sx={{ my: 2, marginRight: 3, color: "var(--radiology-yellow)"  }}
         >
           <GitHubIcon></GitHubIcon>
         </Link>
@@ -34,7 +35,7 @@ const Social = () => {
         <Link
           href="https://www.linkedin.com/in/jul1alcaraz/"
           target="_blank"
-          sx={{ my: 2, marginRight: 3, color: "white" }}
+          sx={{ my: 2, marginRight: 3, color: "var(--radiology-yellow)"  }}
         >
           <LinkedInIcon></LinkedInIcon>
         </Link>
@@ -44,7 +45,7 @@ const Social = () => {
         <Link
           href="https://www.unlar.edu.ar/"
           target="_blank"
-          sx={{ my: 2, marginRight: 3, color: "white" }}
+          sx={{ my: 2, marginRight: 3, color: "var(--radiology-yellow)"  }}
         >
           <SchoolIcon></SchoolIcon>
         </Link>

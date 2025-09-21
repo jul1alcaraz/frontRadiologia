@@ -7,6 +7,7 @@ import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
 import { orange } from "@mui/material/colors";
 import MenuDrawer from "../utils/menuDrawer";
+import "../App.css";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -52,20 +53,13 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 function Header() {
   return (
-    <AppBar 
-      sx={{
-        position: 'fixed',
-        width: '100%',
-        buttom: 0,
-        backgroundColor: orange[500],
-        color: 'white',
-        zIndex: 1000,
-      }}
+    <AppBar className="radiology-header-footer"
+     
     >
       <Toolbar>
         <MenuDrawer />
         <Box sx={{ marginLeft: "auto" }}>
-          <Search>
+          <Search className="radiology-search">
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>

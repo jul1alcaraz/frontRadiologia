@@ -13,6 +13,7 @@ import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import AutoFixHighIcon from '@mui/icons-material/AutoFixHigh';
 import BungalowIcon from '@mui/icons-material/Bungalow';
+import "../App.css";
 
 function MenuDrawer() {
   const [open, setOpen] = React.useState(false);
@@ -28,18 +29,16 @@ function MenuDrawer() {
   ];
 
   const DrawerList = (
-    <Box
-  sx={{ width: 250 }}
-  role="presentation"
+    <Box 
   onClick={() => toggleDrawer(false)}
 >
-  <List>
+  <List >
     {menu.map(({ path, name }, index) => {
       const icons = [<BungalowIcon />, <AutoFixHighIcon />, <InboxIcon />];
       return (
-        <ListItem key={path} disablePadding>
+        <ListItem  key={path} disablePadding>
           <ListItemButton component={Link} to={path}>
-            <ListItemIcon>
+            <ListItemIcon className="radiology-contrast">
               {icons[index % icons.length]}
             </ListItemIcon>
             <ListItemText primary={name} />
@@ -55,17 +54,17 @@ function MenuDrawer() {
 
   return (
     <div>
-      <IconButton
+      <IconButton  
         onClick={() => toggleDrawer(true)}
         size="large"
         edge="start"
         color="inherit"
         aria-label="open drawer"
-        sx={{ mr: 2 }}
+        
       >
-        <MenuIcon />
+        <MenuIcon  />
       </IconButton>
-      <Drawer open={open} onClose={() => toggleDrawer(false)}>
+      <Drawer open={open} onClose={() => toggleDrawer(false)} className="MuiListItemIcon-root">
         {DrawerList}
       </Drawer>
     </div>

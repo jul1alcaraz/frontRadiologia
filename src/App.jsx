@@ -7,6 +7,10 @@ import SubCategorias from "./pages/cSubCategorias";
 import Carrusel from "./pages/dCarrusel";
 import Contacto from "./pages/eContacto";
 import "./App.css";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
+
 
 const App = () => {
   return (
@@ -20,6 +24,7 @@ const App = () => {
           <Route path="/carrusel" element={<Carrusel />} />
           <Route path="/contacto" element={<Contacto />} />
         </Routes>
+        
       <Footer/>
     </>
   );

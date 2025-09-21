@@ -1,59 +1,58 @@
 import * as React from "react";
 import { useState } from "react";
-import { Box, Button, Alert } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import { Link } from "react-router-dom";
+import "../App.css";
 
 const Home = () => {
   const [alertShown, setAlertShown] = useState(false);
 
-  const handleMouseEnterSimple = () => {
+  const handleMouseEnterSimple  = () => {
     if (!alertShown) {
       alert(
-        "Esta pagina esta en desarrollo, con esta entrega espero ejemplificar aproxiamadamente como sera el diseño y en manejo de las rutas."
+        "Esta página está en desarrollo. Con esta entrega espero ejemplificar aproximadamente cómo será el diseño y el manejo de las rutas."
       );
       setAlertShown(true);
     }
   };
 
-  return (
-    <>
-      <h1>Radiología 1</h1>
-      <Box
-        display="flex"
-        justifyContent="space-between"
-        alignItems="center"
-        m={2}
-      >
-        <div>
-          <Box flex="0 0 40%" pr={2}>
-            <h2>Nuestra finalidad</h2>
-            <p>
-              Esta página web pertenece a la cátedra anteriormente nombrada de
-              la Universidad Nacional de La Rioja. <br />
-              Su utilidad es optativa y está diseñada con el objetivo de mejorar
-              la visualización en los alumnos, ayudándolos a obtener un mejor
-              desempeño en el examen final. En este sitio, mediante las imágenes
-              radiológicas disponibles, podrás comparar las imágenes que
-              realizaste con los ejemplos propuestos.
-            </p>
-          </Box>
-        </div>
-        <Box flex="0 0 40%" pl={2}>
-          <Box textAlign="center" mt={2}>
-            <Button
-              component={Link}
-              to="/categoria"
-              variant="contained"
-              color="primary"
-              onMouseEnter={handleMouseEnterSimple}
-            >
-              Ver Categorías
-            </Button>
-          </Box>
-        </Box>
-      </Box>
-    </>
-  );
+ return (
+  <>
+    <h1 className="radiology-title">Radiología 1</h1>
+
+    <div className="radiology-home-container">
+      <div className="radiology-subtitle2">
+        <p>
+          Sitio web desarrollado para los estudiantes de la cátedra{" "}
+          <strong>Radiología 1</strong>, perteneciente a la carrera de
+          Licenciatura en Bioimágenes de la Universidad Nacional de La Rioja.
+          <br />
+          Su propósito es servir como recurso de apoyo académico, permitiendo
+          a los alumnos estudiar clase a clase y practicar la interpretación
+          de placas radiológicas con miras al examen final.
+          <br />
+          El objetivo principal es ofrecer una interfaz moderna, intuitiva y
+          accesible que facilite la navegación entre categorías, la
+          visualización de imágenes y el acceso a información clave para el
+          aprendizaje y la preparación académica.
+        </p>
+      </div>
+
+      <div className="radiology-home-button">
+        <Button
+          component={Link}
+          to="/categoria"
+          variant="contained"
+          className="radiology-button-primary"
+          onMouseEnter={handleMouseEnterSimple}
+        >
+          Ver Categorías
+        </Button>
+      </div>
+    </div>
+  </>
+);
+
 };
 
 export default Home;

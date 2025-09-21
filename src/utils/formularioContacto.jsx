@@ -10,7 +10,9 @@ import {
   CircularProgress,
   Grid,
 } from "@mui/material";
+import InboxIcon from "@mui/icons-material/MoveToInbox";
 import { Send as SendIcon, Person as PersonIcon } from "@mui/icons-material";
+import "../App.css";
 
 const FormularioContacto = () => {
   const [formData, setFormData] = useState({
@@ -102,16 +104,16 @@ const FormularioContacto = () => {
   };
 
   return (
-    <Container maxWidth="md" sx={{ py: 4 }}>
-      <Paper elevation={3} sx={{ p: 4 }}>
-        <Box sx={{ mb: 3, textAlign: "center" }}>
-          <PersonIcon sx={{ fontSize: 48, color: "primary.main", mb: 2 }} />
-          <Typography variant="h4" component="h1" gutterBottom>
-            Formulario de Consulta
-          </Typography>
-          <Typography variant="subtitle1" color="text.secondary">
-            Complete el formulario para enviar su consulta
-          </Typography>
+    <Container>
+      <Paper className="radiology-form-container">
+        <Box sx={{ textAlign: "center" }}>
+          <InboxIcon
+            sx={{ fontSize: 48, color: "var(--radiology-yellow)", mb: 2 }}
+          />
+          <h2 className="radiology-subtitle">Formulario de Consulta</h2>
+          <p className="radiology-subtitle2">
+            Complete el formulario para enviar su consulta.
+          </p>
         </Box>
 
         {errors.submit && (
@@ -121,9 +123,9 @@ const FormularioContacto = () => {
         )}
 
         <Box component="form" onSubmit={handleSubmit} noValidate>
-          <Grid container spacing={3}>
+          <Grid className="radiology-form-grid">
             {/* Nombre y Apellido */}
-            <Grid item xs={12} sm={6}>
+            <Grid item>
               <TextField
                 fullWidth
                 label="Nombre"
@@ -140,7 +142,7 @@ const FormularioContacto = () => {
               />
             </Grid>
 
-            <Grid item xs={12} sm={6}>
+            <Grid item>
               <TextField
                 fullWidth
                 label="Apellido"
@@ -158,7 +160,7 @@ const FormularioContacto = () => {
             </Grid>
 
             {/* DNI */}
-            <Grid item xs={12} sm={6}>
+            <Grid item>
               <TextField
                 fullWidth
                 label="DNI"
@@ -179,7 +181,7 @@ const FormularioContacto = () => {
             </Grid>
 
             {/* Año que cursó */}
-            <Grid item xs={12} sm={6}>
+            <Grid item>
               <TextField
                 fullWidth
                 label="Año que cursó la materia"
@@ -192,61 +194,42 @@ const FormularioContacto = () => {
                 required
               ></TextField>
             </Grid>
-
-            {/* Consulta */}
-           <Grid item xs={12}>
-    <TextField
-      fullWidth
-      multiline
-      rows={4}           // Aumentamos las filas para mayor tamaño vertical
-      label="Consulta "
-      name="consulta"
-      value={formData.consulta}
-      onChange={handleChange}
-      error={!!errors.consulta}
-      helperText={errors.consulta || `${formData.consulta.length}/500 caracteres`}
-      variant="outlined"
-      required
-      inputProps={{
-        maxLength: 500
-      }}
-      placeholder="Escriba aquí su consulta detallada..."
-      sx={{
-        fontSize: '16px',
-        minHeight: 200
-      }}
-    />
-  </Grid>
-
-          </Grid>
-          
-          <Grid item xs={12}>
-              <Box sx={{ display: "flex", justifyContent: "center", mt: 3 }}>
-                <Button
-                  type="submit"
-                  variant="contained"
-                  size="large"
-                  disabled={loading}
-                  startIcon={
-                    loading ? <CircularProgress size={20} /> : <SendIcon />
-                  }
-                  sx={{
-                    minWidth: 200,
-                    py: 1.5,
-                  }}
-                >
-                  {loading ? "Enviando..." : "Enviar Consulta"}
-                </Button>
-              </Box>
+            <Grid item xs={12} className="radiology-form-grid-textarea">
+              <TextField
+                label="Consulta"
+                name="consulta"
+                value={formData.consulta}
+                onChange={handleChange}
+                error={!!errors.consulta}
+                helperText={
+                  errors.consulta ||
+                  `${formData.consulta.length}/500 caracteres`
+                }
+                variant="outlined"
+                required
+                multiline
+                fullWidth
+                inputProps={{ maxLength: 500 }}
+                placeholder="Escriba aquí su consulta detallada..."
+              />
             </Grid>
+          </Grid>
         </Box>
-
-        <Box sx={{ mt: 4, p: 2, bgcolor: "grey.50", borderRadius: 1 }}>
-          <Typography variant="body2" color="text.secondary" align="center">
-            Sus datos serán tratados de forma confidencial y utilizados
-            únicamente para responder su consulta.
-          </Typography>
-        </Box>
+        <Grid className="radiology-button-container">
+          <Box>
+            <Button
+              item
+              className="radiology-button-success-box"
+              type="submit"
+              disabled={loading}
+              startIcon={
+                loading ? <CircularProgress size={20} /> : <SendIcon />
+              }
+            >
+              {loading ? "Enviando..." : "Enviar Consulta"}
+            </Button>
+          </Box>
+        </Grid>
       </Paper>
     </Container>
   );
